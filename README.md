@@ -29,5 +29,6 @@ python main.py --train data/train.csv --test data/test.csv
 ```
 
 Notas:
+
 - `data/*.csv` debe contener una columna `label` con 0/1 y las columnas de respuestas AQ-10.
 - `src/preprocessing.py` intenta convertir respuestas `yes/no` a 1/0 automáticamente.
