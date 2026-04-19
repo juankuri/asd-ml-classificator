@@ -1,32 +1,31 @@
-from typing import Tuple
 import pandas as pd
+import numpy as np
 
-
-def load_data(path: str) -> Tuple[pd.DataFrame, pd.Series]:
-    """Carga CSV con columna `label` y convierte respuestas yes/no a 1/0.
-
-    Espera: archivo CSV donde la columna `label` contiene 0/1 y
-    las demás columnas son respuestas ("yes"/"no" u 0/1).
-    """
+def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path)
-    if 'label' not in df.columns:
-        raise ValueError("El CSV debe contener la columna 'label' con 0/1")
-    y = df['label'].astype(int)
-    X = df.drop(columns=['label'])
+    return df
 
-    def map_bool(v):
-        if pd.isna(v):
-            return 0
-        s = str(v).strip().lower()
-        if s in ('yes', 'y', '1', 'true', 't'):
-            return 1
-        if s in ('no', 'n', '0', 'false', 'f'):
-            return 0
-        try:
-            return float(v)
-        except Exception:
-            return 0
 
-    X = X.applymap(map_bool)
-    X = X.fillna(0)
+def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+    # eliminar columnas innecesarias
+    columns_to_drop = ["ID", "age_desc", "result"]
+    df = df.drop(columns=columns_to_drop, errors="ignore")
+
+    df = df.replace("?", np.nan)
+
+    return df
+
+
+def split_features_target(df: pd.DataFrame):
+    y = df["Class/ASD"]
+    X = df.drop("Class/ASD", axis=1)
     return X, y
+
+
+def encode_features(X: pd.DataFrame) -> pd.DataFrame:
+    X = pd.get_dummies(X)
+    return X.astype(int)
+
+
+def handle_missing_values(X: pd.DataFrame) -> pd.DataFrame:
+    return X.fillna(X.mean())
