@@ -1,7 +1,3 @@
-Aquí tienes un **README enriquecido, profesional y listo para tu repo**, manteniendo lo que ya tienes pero agregando contexto, uso real, explicación del pipeline y cómo usar el modelo en la app.
-
----
-
 # 🧠 Autism ML (AQ-10 Classifier)
 
 Sistema de **Machine Learning para clasificación de autismo (ASD)** basado en datos de screening (cuestionario AQ-10).
