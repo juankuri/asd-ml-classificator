@@ -36,16 +36,37 @@ Sistema de **Machine Learning para clasificación de autismo (ASD)** basado en d
 * scikit-learn
 * joblib
 * matplotlib
-* streamlit (interfaz opcional)
+* streamlit (interfaz grafica)
 
 ---
 
-# 🚀 Instalación rápida (Linux)
+# 🚀 Instalación rápida
+
+## Linux
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+streamlit run app.py
+```
+
+## macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+## Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
 ---
@@ -56,7 +77,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Esto realiza automáticamente:
+Realiza esto automáticamente:
 
 1. Carga y limpieza de datos
 2. Preprocesamiento (encoding + imputación)
@@ -86,7 +107,7 @@ Esto realiza automáticamente:
 
 ---
 
-# ⚖️ Consideraciones importantes
+# ⚖️ Consideraciones que se tuvieron al realizar el modelo
 
 ## 🔹 Desbalance de clases
 
@@ -138,7 +159,7 @@ streamlit run app.py
 
 Permite:
 
-* Ingresar datos de usuario
+* Ingresar datos correspondientes al usuario
 * Obtener predicción en tiempo real
 * Visualizar probabilidad
 
@@ -154,7 +175,7 @@ Datos → Preprocesamiento → Modelo → Probabilidad → Clasificación
 
 # 📥 Formato del dataset
 
-El dataset debe contener:
+El dataset debe contiene:
 
 * Variables AQ-10 (`A1_Score` a `A10_Score`)
 * Variables demográficas (edad, género, etc.)
@@ -180,7 +201,7 @@ Class/ASD → 0 (No), 1 (Sí)
 
 * Dataset basado en cuestionario (no clínico)
 * Posible sesgo en respuestas
-* No sustituye diagnóstico médico
+* NO SUSTITUYE DIAGNOSTICO MEDDICO
 * Dependiente de calidad de datos
 
 ---
@@ -192,24 +213,13 @@ Class/ASD → 0 (No), 1 (Sí)
 
 ---
 
-# 💡 Justificación clave
+# 💡 Justificación
 
-> Se prioriza el **recall** para minimizar falsos negativos, dado el impacto clínico de no detectar un caso de autismo.
-
----
-
-# 📚 Conceptos clave
-
-* Screening
-* Clasificación binaria
-* One-Hot Encoding
-* Imputación
-* ROC-AUC
-* Threshold tuning
+> Se tomo la decision de priorizar el **recall** para minimizar falsos negativos, dado el impacto de no detectar un posible caso de autismo.
 
 ---
 
-# 🧩 Futuras mejoras
+# 🧩 Posibilidad de mejoras futuras
 
 * Uso de pipelines completos (`sklearn.pipeline`)
 * Validación cruzada
